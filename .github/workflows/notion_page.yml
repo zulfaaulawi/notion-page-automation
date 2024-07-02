@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Update to v3 for Node.js 20 support
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4  # Update to v4 for Node.js 20 support
         with:
-          python-version: '3.x'
+          python-version: '3.1'
 
       - name: Install dependencies
         run: |
@@ -27,8 +27,3 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: python create_notion_page.py
-
-      - name: Deploy to Notion
-        env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-        run: python deploy_to_notion.py
